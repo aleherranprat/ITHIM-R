@@ -65,12 +65,6 @@
 
 
 health_burden <- function(ind_ap_pa, conf_int = F, combined_AP_PA = T) {
-  # use demographic data and get it into the required format
-  # DEMOGRAPHIC is read with data.table::fread in ithim_load_data(), so it is
-  # a data.table. There, x[, <logical vector>] evaluates j as an expression
-  # and returns the logical vector itself instead of selecting columns, and
-  # the left_joins below then fail with "`y` is a logical vector". Work on a
-  # plain data.frame so the column selection means what it says.
   demographic <- as.data.frame(DEMOGRAPHIC)
   demographic$dem_index <- 1:nrow(demographic)
   demographic <- demographic[, !names(demographic) %in% "population", drop = FALSE]
